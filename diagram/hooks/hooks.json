@@ -1,0 +1,4 @@
+{
+  "description": "The diagram hooks module",
+  "modules": ["./register.js"]
+}

@@ -1,0 +1,4 @@
+{
+  "description": "The tldr hooks module",
+  "modules": ["./register.js"]
+}

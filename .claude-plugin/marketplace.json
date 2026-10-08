@@ -1,0 +1,22 @@
+{
+  "name": "claude-harness",
+  "owner": { "name": "Koren Kazoom" },
+  "description": "Koren's personal Claude Code harness: mods and rules",
+  "plugins": [
+    {
+      "name": "tldr",
+      "source": "./tldr",
+      "description": "Adds a TLDR button that summarizes Claude's latest response in a side pane"
+    },
+    {
+      "name": "diagram",
+      "source": "./diagram",
+      "description": "Adds a Diagram button that draws the flow or architecture from Claude's latest response in its own pane tab"
+    },
+    {
+      "name": "agent-dock",
+      "source": "./agent-dock",
+      "description": "Agents side panel: every agent you can run, with run, pause, stop and open-in-tab controls, plus an Agents button and a context window bar with a Compact button above the prompt"
+    }
+  ]
+}

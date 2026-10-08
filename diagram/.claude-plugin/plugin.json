@@ -1,0 +1,7 @@
+{
+  "name": "diagram",
+  "description": "Adds a Diagram button that draws the flow or architecture from Claude's latest response in its own pane tab, saved as SVG and draw.io",
+  "author": {
+    "name": "Koren Kazoom"
+  }
+}

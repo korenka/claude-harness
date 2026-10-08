@@ -1,0 +1,6 @@
+{
+  "name": "agent-dock",
+  "description": "Agents side panel with run, pause, stop and open-in-tab controls, plus a context window bar with a Compact button",
+  "author": { "name": "Koren Kazoom" },
+  "types": "./types/index.d.ts"
+}

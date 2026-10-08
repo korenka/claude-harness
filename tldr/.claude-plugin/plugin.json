@@ -1,0 +1,7 @@
+{
+  "name": "tldr",
+  "description": "Adds a TLDR button that summarizes Claude's latest response in a side pane",
+  "author": {
+    "name": "Koren Kazoom"
+  }
+}
