@@ -17,6 +17,11 @@
       "name": "agent-dock",
       "source": "./agent-dock",
       "description": "Agents side panel: every agent you can run, with run, pause, stop and open-in-tab controls, plus an Agents button and a context window bar with a Compact button above the prompt"
+    },
+    {
+      "name": "rephrase",
+      "source": "./rephrase",
+      "description": "Adds a Rephrase button that rewrites the draft in the prompt box with a small model, so the LLM gets a clearer, structured prompt. Undo restores the original"
     }
   ]
 }

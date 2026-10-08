@@ -1,0 +1,6 @@
+{
+  "name": "rephrase",
+  "description": "Adds a Rephrase button that rewrites the draft in the prompt box with a small model, so the LLM gets a clearer, structured prompt. Undo restores the original",
+  "author": { "name": "Koren Kazoom" },
+  "types": "./types/index.d.ts"
+}

@@ -9,6 +9,7 @@ My personal Claude Code harness: mods (UI plugins) and the rules I load into eve
 | `tldr` | Adds a TLDR button that summarizes Claude's latest response in a side pane. |
 | `diagram` | Adds a Diagram button that draws the flow or architecture from Claude's latest response, saved as SVG and draw.io. |
 | `agent-dock` | Agents side panel with run, pause, stop and open-in-tab controls, plus a context window bar with a Compact button. |
+| `rephrase` | Adds a Rephrase button that rewrites your draft prompt with Haiku so the LLM reads it clearly, with an Undo button. |
 
 ### Install
 
