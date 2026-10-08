@@ -50,6 +50,35 @@ test('the context bar shows the fill and Compact compacts', async ($, on) => {
   await band.unmount()
 })
 
+test('Compact runs /compact where the session cannot compact directly', async ($, on) => {
+  const ran: string[] = []
+  const toasts: string[] = []
+  on('ui.render', { component: 'AbovePrompt' }, async () => ({ type: 'Box', props: {}, children: [] }))
+  on('session.usage', async () => ({
+    value: { startedAt: 0, rateLimits: [], context: { tokens: 300_000, window: 1_000_000, percent: 30 } },
+  }))
+  on('ui.toast', async (_$, e) => {
+    toasts.push(e.text)
+    return { value: undefined }
+  })
+  // No session.compact hook: the kit's bottom rejects it, as an SDK host does.
+  on('command.run', async (_$, e) => {
+    ran.push(e.command)
+    return { text: '' }
+  })
+
+  const band = await $.ui.mount({
+    plugin: 'agent-dock',
+    surface: 'desktop',
+    component: 'AbovePrompt',
+    props: { hasSurvey: false, isWorking: false, maxRows: 10, bodyColumns: 120, scroll: { offset: 0, bodyRows: 10 }, view: {} },
+  })
+  await band.press({ key: 'compact' })
+  expect(ran).toEqual(['compact'])
+  expect(toasts).toEqual([])
+  await band.unmount()
+})
+
 test('parses name, model and a folded description from frontmatter', async () => {
   const text = '---\nname: bug-fixer\ndescription: >\n  Fixes bugs\n  end to end.\nmodel: opus\n---\nBody'
   expect(parseAgentFile(text, 'user')).toEqual({

@@ -75,6 +75,8 @@ async function refreshContext($: $) {
   if (!isSame) await update($, context, () => fill)
 }
 
+const messageOf = (error: unknown) => (error instanceof Error ? error.message : String(error))
+
 async function compactNow($: $) {
   try {
     const done = await $.session.compact({})
@@ -82,7 +84,13 @@ async function compactNow($: $) {
     // The calling plugin's own session.compact hook is skipped, so refresh here.
     else await refreshContext($)
   } catch (error) {
-    $.ui.toast(`Could not compact: ${error instanceof Error ? error.message : String(error)}`)
+    // An SDK host (the desktop Code tab) compacts only through the /compact command.
+    try {
+      await $.command.run({ command: 'compact' })
+      await refreshContext($)
+    } catch (fallback) {
+      $.ui.toast(`Could not compact (${messageOf(error)}). Type /compact instead: ${messageOf(fallback)}`)
+    }
   }
 }
 
@@ -281,7 +289,6 @@ export const register: Register = on => {
     $.clock.every(POLL_MS, () => syncStatuses($).catch(() => undefined))
     // Catches a /model switch between turns.
     $.clock.every(CONTEXT_POLL_MS, () => refreshContext($).catch(() => undefined))
-    void $.ui.open({ id: PANEL, title: PANEL_TITLE, columns: PANEL_COLUMNS })
     await refreshContext($).catch(() => undefined)
 
     return next(e)
