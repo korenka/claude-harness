@@ -1,0 +1,6 @@
+{
+  "name": "help-offers",
+  "description": "Turns the 'How I can help' list at the end of an answer into buttons that start a subagent for each offer",
+  "author": { "name": "Koren Kazoom" },
+  "types": "./types/index.d.ts"
+}
