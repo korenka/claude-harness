@@ -2,8 +2,6 @@
 
 Draws the flow, feature or architecture from Claude's latest answer as a diagram in its own pane tab, and saves it as SVG and draw.io.
 
-![Diagram pane showing a generated architecture diagram](docs/diagram.png)
-
 ## How to use
 
 - Press **Diagram** above the prompt, or type `/diagram`.

@@ -9,6 +9,8 @@ import { labelOf, promptFor, REPORTS_DIR, slugOf, splitOffers } from './offers'
 // Offers that were clicked, keyed by "<message id>:<index>". Unclicked offers have no entry.
 const offers = atom({ plugin: 'help-offers', key: 'offers' } as const, [])
 
+const NO_VERDICT = 'gave no verdict'
+
 const GLYPH: Record<Offer['status'], string> = { idle: '▶', running: '…', done: '✓', failed: '✗' }
 const HINT: Record<Offer['status'], string> = {
   idle: 'click to run as a subagent',
@@ -53,11 +55,20 @@ export const register: Register = on => {
         await $.prompt.fill({ text: `Read ${current.reportPath} and walk me through it.` })
         return
       }
-      const spawned = await $.agent.spawn({
-        prompt: promptFor(text),
-        description: `Help: ${labelOf(text, 40)}`,
-        subagentType: 'general-purpose',
-      })
+      const spawn = () =>
+        $.agent.spawn({
+          prompt: promptFor(text),
+          description: `Help: ${labelOf(text, 40)}`,
+          subagentType: 'general-purpose',
+        })
+      let spawned = await spawn()
+      // A click carries no user request, so the auto mode classifier may give no verdict. Its message asks for one retry.
+      if (spawned.deny?.includes(NO_VERDICT)) spawned = await spawn()
+      if (spawned.deny?.includes(NO_VERDICT)) {
+        await $.prompt.fill({ text: `Run this as a background subagent: ${labelOf(text, 400)}` })
+        $.ui.toast('Auto mode could not approve the subagent. Send the filled prompt to run it.')
+        return
+      }
       if (spawned.deny !== undefined || !spawned.agentId) {
         $.ui.toast(`Could not start the subagent: ${spawned.deny ?? 'no agent id'}`)
         return
@@ -74,9 +85,14 @@ export const register: Register = on => {
         {split.offers.map((text, i) => {
           const status = clicked.find(one => one.id === idOf(i))?.status ?? 'idle'
           return (
-            <Button key={`offer-${i}`} plain onPress={() => press(i, text)}>
-              {GLYPH[status]} {labelOf(text, 400)} <Text dimColor>({HINT[status]})</Text>
-            </Button>
+            <Box key={`row-${i}`} flexDirection="row" gap={1}>
+              <Button key={`offer-${i}`} plain label={GLYPH[status]} onPress={() => press(i, text)} />
+              <Box flexGrow={1} flexShrink={1}>
+                <Text wrap="wrap">
+                  {labelOf(text, 400)} <Text dimColor>({HINT[status]})</Text>
+                </Text>
+              </Box>
+            </Box>
           )
         })}
         {split.after !== '' && <Markdown key="after" text={split.after} />}
