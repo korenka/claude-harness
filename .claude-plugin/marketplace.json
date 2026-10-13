@@ -22,6 +22,16 @@
       "name": "rephrase",
       "source": "./mods/rephrase",
       "description": "Adds a Rephrase button that rewrites the draft in the prompt box with a small model, so the LLM gets a clearer, structured prompt. Undo restores the original"
+    },
+    {
+      "name": "blind-spots",
+      "source": "./mods/blind-spots",
+      "description": "Adds a Blind Spots button above the prompt that asks Claude to list the engineering blind spots in the current plan or design"
+    },
+    {
+      "name": "help-offers",
+      "source": "./mods/help-offers",
+      "description": "Turns the 'How I can help' list at the end of an answer into buttons that start a subagent for each offer"
     }
   ]
 }

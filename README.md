@@ -12,6 +12,8 @@ Each mod lives in its own folder under `mods/`.
 | `diagram` | Adds a Diagram button that draws the flow or architecture from Claude's latest response, saved as SVG and draw.io. |
 | `agent-dock` | Agents side panel with run, pause, stop and open-in-tab controls, plus a context window bar with a Compact button. |
 | `rephrase` | Adds a Rephrase button that rewrites your draft prompt with Haiku so the LLM reads it clearly, with an Undo button. |
+| `blind-spots` | Adds a Blind Spots button (and `/blind-spots`) that asks Claude to list the engineering gaps in the current plan or design. |
+| `help-offers` | Turns the "How I can help" list at the end of an answer into buttons that start a subagent for each offer. |
 
 ### Install
 

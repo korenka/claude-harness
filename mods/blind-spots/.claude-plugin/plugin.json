@@ -1,0 +1,5 @@
+{
+  "name": "blind-spots",
+  "description": "Adds a Blind Spots button above the prompt that asks Claude to list the engineering blind spots in the current plan or design",
+  "author": { "name": "Koren Kazoom" }
+}
