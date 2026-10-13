@@ -5,22 +5,22 @@
   "plugins": [
     {
       "name": "tldr",
-      "source": "./tldr",
+      "source": "./mods/tldr",
       "description": "Adds a TLDR button that summarizes Claude's latest response in a side pane"
     },
     {
       "name": "diagram",
-      "source": "./diagram",
+      "source": "./mods/diagram",
       "description": "Adds a Diagram button that draws the flow or architecture from Claude's latest response in its own pane tab"
     },
     {
       "name": "agent-dock",
-      "source": "./agent-dock",
+      "source": "./mods/agent-dock",
       "description": "Agents side panel: every agent you can run, with run, pause, stop and open-in-tab controls, plus an Agents button and a context window bar with a Compact button above the prompt"
     },
     {
       "name": "rephrase",
-      "source": "./rephrase",
+      "source": "./mods/rephrase",
       "description": "Adds a Rephrase button that rewrites the draft in the prompt box with a small model, so the LLM gets a clearer, structured prompt. Undo restores the original"
     }
   ]

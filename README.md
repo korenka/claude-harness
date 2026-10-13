@@ -4,6 +4,8 @@ My personal Claude Code harness: mods (UI plugins) and the rules I load into eve
 
 ## Mods
 
+Each mod lives in its own folder under `mods/`.
+
 | Mod | What it does |
 | --- | --- |
 | `tldr` | Adds a TLDR button that summarizes Claude's latest response in a side pane. |
@@ -54,4 +56,4 @@ Clone the repo and add the clone as a local marketplace:
 claude plugin marketplace add ~/path/to/claude-harness
 ```
 
-Edits to a mod folder take effect after `/reload-plugins`. No version bump is needed.
+Edits to a folder under `mods/` take effect after `/reload-plugins`. No version bump is needed.
